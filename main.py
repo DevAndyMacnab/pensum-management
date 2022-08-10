@@ -1,12 +1,15 @@
 from tkinter import Tk,ttk
-from tkinter import *
 from principal.view.principalWindow import Principal
 
 
 if __name__=="__main__":
-    #Ejecucion de ventana principal del programa
+    #
     wPrincipal=Tk()
+
+    #Recibe los parametros de diseño de la clase Principal 
     application=Principal(wPrincipal)
+
+    #Aqui se inicializa mi ventana principal
     wPrincipal.mainloop()
 
     
