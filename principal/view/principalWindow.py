@@ -1,42 +1,77 @@
 from tkinter import ttk,Tk
 from tkinter import filedialog
 from tkinter import *
-
-
+from tkinter import messagebox as MessageBox
+from management.view.managementWindow import ManagementCourses
+from principal.controller.exit import ExitProgram
 
 
 class Principal:
     
     def __init__(self,window) :
+        self.closeFunction=ExitProgram(window)
         #Aqui damos parametros graficos a nuestra ventana principal(tamaño, titulo, etc)
+       
         self.principal = window
         self.principal.title("PRINCIPAL WINDOW APP")
         self.principal.geometry("800x500")
         self.principal.configure(background="#C84D32",pady="4px",padx="4px")
-        self.prueba= 2 + 2
-        print(self.prueba)
+        self.principal.resizable(False,False)
 
         #Boton para cargar archivos
-        self.loadButton= Button(self.principal,text="Open File",
+        self.loadButton= Button(self.principal,text="Abrir Archivo",
             command=self.loadFiles,
             width=22,
             height=3)
-        self.loadButton.grid(row= 2,column = 2)
+        
         self.loadButton.pack()
         
         #Boton para gestionar cursos
         self.management=Button(self.principal,text="Gestionar Cursos",
-        command=lambda:print("hola mundo"),
+        command=lambda:ManagementCourses(window),
+        width=22,
+        height=3) 
+        self.management.pack()
+
+
+
+        #Boton para ir a la ventana de conteo de créditos
+        self.credits=Button(self.principal,text="Conteo de Créditos",
         width=22,
         height=3)
+        self.credits.pack()
+
+        #Boton para salir del programa
+        self.exit= Button(self.principal,text="Salir",
+        command=self.closeFunction.closeProgram,
+        width=22,
+        height=3)
+        self.exit.pack()
+
+
+        #Label con la informacion solicitada
+        self.labelCurso=Label(self.principal,text="Nombre del Curso: Lab. Lenguajes Formales y de Programación").pack()
+        self.labelEstudiantes=Label(self.principal,text="Andy Roberto Jimenez Macnab").pack()
+        self.labelCarne=Label(self.principal,text="20211490").pack()
         
-        self.management.pack()
+
+
+
+
+
     
     def loadFiles(self):
         self.archivo = filedialog.askopenfilename(
-        title="Abrir", initialdir="C:/")
+        title="Abrir", initialdir="C:/Escritorio",
+        )
+
         print(self.archivo)
         return self.archivo
+    
+    
+
+
+        
         
     
         
