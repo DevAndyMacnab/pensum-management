@@ -1,5 +1,3 @@
-from tkinter import ttk,Tk
-from tkinter import filedialog
 from tkinter import *
 from tkinter import messagebox as MessageBox
 

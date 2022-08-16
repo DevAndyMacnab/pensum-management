@@ -1,8 +1,10 @@
 from tkinter import ttk,Tk
-from tkinter import filedialog
 from tkinter import *
 from tkinter import messagebox as MessageBox
+#Importando los modulos del proyecto ubicados en otros archivos
 from management.view.managementWindow import ManagementCourses
+from creditsCount.view.creditsCountsWindow import CreditsWindow
+from principal.controller.loadFile import Loadfile
 from principal.controller.exit import ExitProgram
 
 
@@ -15,15 +17,14 @@ class Principal:
         self.principal = window
         self.principal.title("PRINCIPAL WINDOW APP")
         self.principal.geometry("800x500")
-        self.principal.configure(background="#C84D32",pady="4px",padx="4px")
+        self.principal.configure(pady="4px",padx="4px")
         self.principal.resizable(False,False)
 
         #Boton para cargar archivos
         self.loadButton= Button(self.principal,text="Abrir Archivo",
-            command=self.loadFiles,
+            command=lambda:Loadfile.fileSelect(window),
             width=22,
             height=3)
-        
         self.loadButton.pack()
         
         #Boton para gestionar cursos
@@ -37,6 +38,7 @@ class Principal:
 
         #Boton para ir a la ventana de conteo de créditos
         self.credits=Button(self.principal,text="Conteo de Créditos",
+        command=lambda:CreditsWindow(window),
         width=22,
         height=3)
         self.credits.pack()
@@ -60,13 +62,7 @@ class Principal:
 
 
     
-    def loadFiles(self):
-        self.archivo = filedialog.askopenfilename(
-        title="Abrir", initialdir="C:/Escritorio",
-        )
 
-        print(self.archivo)
-        return self.archivo
     
     
 
