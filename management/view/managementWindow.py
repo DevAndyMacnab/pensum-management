@@ -1,6 +1,8 @@
 from tkinter import ttk,Tk
 from tkinter import *
 from principal.controller.loadFile import Loadfile
+from management.controller.addcourse import AgregarCurso
+from management.controller.editcourse import EditarCurso
 
 
 class ManagementCourses:
@@ -20,11 +22,13 @@ class ManagementCourses:
 
         #Boton agregar cursos
         self.add=Button(self.newWindow,text="Agregar Curso",
+        command= lambda:AgregarCurso(window),
         width=22,
         height=3).grid(row=2,column=0)
 
         #Boton editar curso
         self.edit=Button(self.newWindow,text="Editar Curso",
+        command=lambda:EditarCurso(window),
         width=22,
         height=3).grid(row=3,column=0)
 
@@ -40,7 +44,7 @@ class ManagementCourses:
         ,height=3).grid(row=5,column=0)
 
         #Tabla TreeView donde se mostrarán los datos
-        
+
         self.tree = ttk.Treeview(self.newWindow,height=16,columns=("0","1","2","3","4","5"))
         self.tree.heading('#0',text="Codigo",anchor=CENTER)
         self.tree.heading('#1',text="Nombre",anchor=CENTER)
@@ -52,7 +56,9 @@ class ManagementCourses:
         self.tree.grid(row=0,column=0)
 
         #Campos de texto
-        self.codeDelete= Entry(self.newWindow).grid(row=1,column=1)
+        self.codeEdit=Entry(self.newWindow).grid(row=1,column=1)
+        self.codeDelete= Entry(self.newWindow).grid(row=2,column=1)
+        
 
     def enlistar(self):
         filas=Loadfile.fileReader(self.principal)
