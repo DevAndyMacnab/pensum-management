@@ -2,6 +2,7 @@ from tkinter import ttk,Tk
 from tkinter import *
 from tkinter import messagebox as MessageBox
 #Importando los modulos del proyecto ubicados en otros archivos
+
 from management.view.managementWindow import ManagementCourses
 from creditsCount.view.creditsCountsWindow import CreditsWindow
 from principal.controller.loadFile import Loadfile
