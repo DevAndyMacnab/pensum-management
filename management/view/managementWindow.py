@@ -40,7 +40,6 @@ class ManagementCourses:
         self.update= Button(self.newWindow,text="Actualizar",
         width=22,
         height=3,
-        command=self.actualizar,
         state="normal")
         self.update.grid(row=1,column=1)
 

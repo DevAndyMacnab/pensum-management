@@ -1,4 +1,4 @@
-from tkinter import Tk
+from tkinter import Tk,ttk
 from principal.view.principalWindow import Principal
 
 
