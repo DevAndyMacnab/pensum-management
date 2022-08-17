@@ -6,11 +6,11 @@ from principal.model.fileData import FileLoad
 import csv
 
 class Loadfile():
+    
     def __init__(self,window):
         self.principal=window
         self.archivo=" "
         self.cursos=[]
-        self.treeview
 
     #Funcion que mostrará la ventana para seleccionar un archivo csv
     def fileSelect(self):
@@ -46,7 +46,6 @@ class Loadfile():
                         "Creditos": creditos,
                         "Estado": estado
                     })
-             print(self.cursos)
              return self.cursos
                
                 
@@ -57,11 +56,8 @@ class Loadfile():
         except FileNotFoundError:
             MessageBox.showerror("FALLO EN LA EJECUCION",
             "Debes cargar un archivo csv primero para poder ser leído")
-    def Completo (self):
-        datos=FileLoad.showAllDiccionary(self.cursos)
-        return datos
-
-        
+    def diccionario(self):
+        return self.cursos
 
 
         

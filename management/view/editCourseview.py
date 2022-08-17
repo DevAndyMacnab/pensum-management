@@ -1,7 +1,7 @@
 from tkinter import ttk,Tk
 from tkinter import *
 
-class EditarCurso:
+class EditarcursoView:
     def __init__(self,window) -> None:
         self.principal=window
         self.principal= Toplevel()
