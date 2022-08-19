@@ -32,17 +32,17 @@ class Loadfile():
                     columnas = linea.split(separador)
                     code = columnas[0]
                     nombreCurso = columnas[1]
-                    prerrequisito = columnas[2]
+                    prerrequisito = columnas[2] 
                     obligatorio = columnas[3]
                     semestreNo = columnas[4]
                     creditos = columnas[5]
                     estado = columnas[6]
                     self.cursos.append({
-                        "Codigo": code,
+                        "Codigo": int(code),
                         "Nombre": nombreCurso,
                         "Prerrequisito": prerrequisito,
                         "Obligatorio": obligatorio,
-                        "Semestre": semestreNo,
+                        "Semestre": int(semestreNo),
                         "Creditos": creditos,
                         "Estado": estado
                     })
