@@ -2,8 +2,7 @@ from tkinter import ttk
 from tkinter import *
 from tkinter import filedialog as filedialog
 from tkinter import messagebox as MessageBox
-from principal.model.fileData import FileLoad
-import csv
+
 
 class Loadfile():
     
@@ -43,9 +42,22 @@ class Loadfile():
                         "Prerrequisito": prerrequisito,
                         "Obligatorio": obligatorio,
                         "Semestre": int(semestreNo),
-                        "Creditos": creditos,
+                        "Creditos": int(creditos),
                         "Estado": estado
                     })
+
+             
+             for recorrido in self.cursos:
+                repitencias=0
+                conteo=0
+                for comparar in self.cursos:
+                    conteo=conteo+1
+                    if recorrido["Codigo"] == comparar["Codigo"]:
+                        repitencias=repitencias + 1
+                        
+                    if repitencias== 2:
+                        self.cursos.remove(comparar)
+                    
              return self.cursos
                
                 
@@ -56,8 +68,6 @@ class Loadfile():
         except FileNotFoundError:
             MessageBox.showerror("FALLO EN LA EJECUCION",
             "Debes cargar un archivo csv primero para poder ser leído")
-    def diccionario(self):
-        return self.cursos
 
 
         

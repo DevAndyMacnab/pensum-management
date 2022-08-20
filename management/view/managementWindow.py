@@ -1,8 +1,7 @@
 from tkinter import ttk,Tk
 from tkinter import *
 from principal.controller.loadFile import Loadfile
-from management.view.addCourseview import AddcourseView
-from management.view.editCourseview import EditarcursoView
+from creditsCount.view.creditsCountsWindow import CreditsWindow
 
 
 class ManagementCourses:
@@ -13,7 +12,7 @@ class ManagementCourses:
         self.newWindow= Toplevel()
         self.newWindow.title("Gestionar Cursos")
         self.newWindow.geometry("1550x700")
-        self.diccionario=[]
+        self.filas=[]
 
 
         #Boton de listar cursos
@@ -41,12 +40,20 @@ class ManagementCourses:
         command=self.eliminarCurso,
         width=22,
         height=3).grid(row=3,column=0)
-
+        
         #Boton de Regresar (cerrar la ventana secundaria)
         self.close=Button(self.newWindow,text="Regresar",
         command=lambda:self.newWindow.destroy(),
         width=22
         ,height=3).grid(row=4,column=0)
+
+        self.conteo=Button(self.newWindow,text="Contar Créditos",
+        command=self.enviandoDicc,
+        width=22,
+        height=3,
+        state="disabled")
+        self.conteo.grid()
+
 
 
         #Tabla TreeView donde se mostrarán los datoS
@@ -59,7 +66,7 @@ class ManagementCourses:
         self.tree.heading('#4',text="Semestre",anchor=CENTER)
         self.tree.heading('#5',text="Créditos",anchor=CENTER)
         self.tree.heading('#6',text="Estado",anchor=CENTER)
-        self.tree.grid(row=6,column=0,padx=5,pady=5,columnspan=2,rowspan=2,sticky='nsew')
+        self.tree.grid(row=6,column=0,padx=5,pady=5,columnspan=2,rowspan=3,sticky='nsew')
 
         #Campos de texto
         self.codeEdit=Entry(self.newWindow)
@@ -99,6 +106,8 @@ class ManagementCourses:
         self.estado=Entry(self.newWindow)
         self.estado.insert(0,"Estado")
         self.estado.grid(row=6,column=2)
+
+        
         
 
     #FUNCION QUE APLICA LA LISTA AL TREEVIEW
@@ -115,7 +124,7 @@ class ManagementCourses:
             row["Prerrequisito"],row["Obligatorio"],row["Semestre"],row["Creditos"],row["Estado"]
             ))
         self.list["state"]="disabled"
-        
+        self.conteo["state"]="normal"
         return self.filas
 
     def agregarCurso(self):
@@ -201,6 +210,33 @@ class ManagementCourses:
             ))
         self.list["state"]="disabled"
         return self.filas
+    
+
+    def listaActualizada(self):
+        self.diccionario=self.filas
+        diccionario=[]
+        for lineas in self.diccionario:
+
+            diccionario.append({
+                "Codigo": lineas["Codigo"],
+                "Nombre": lineas["Nombre"],
+                "Prerrequisito": lineas["Prerrequisito"],
+                "Obligatorio": lineas["Obligatorio"],
+                "Semestre": lineas["Semestre"],
+                "Creditos": lineas["Creditos"],
+                "Estado": lineas["Estado"]
+
+            })
+
+        return self.diccionario
+
+    def enviandoDicc(self):
+        self.diccionario=self.filas
+        CreditsWindow(self.principal,self.diccionario)
+        
+
+
+
         
 
         
