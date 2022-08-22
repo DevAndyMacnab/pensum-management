@@ -11,7 +11,7 @@ class CreditsWindow:
         self.principal= window
         self.newWindow= Toplevel()
         self.newWindow.title("Conteo de Créditos")
-        self.newWindow.geometry("630x400")
+        self.newWindow.geometry("660x400")
 
         
 
